@@ -85,7 +85,8 @@ class NumberRangeSummarizerImplTest {
 
         Collection<Integer> collected = summarizer.collect(inputString);
         String result = summarizer.summarizeCollection(collected);
-
+        System.out.println("THE INPUT IS: "+ inputString);
+        System.out.println("THE OUTPUT IS: " + result);
         assertEquals(expected, result);
     }
 }

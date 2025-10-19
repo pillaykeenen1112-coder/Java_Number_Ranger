@@ -1,6 +1,8 @@
+//  KEENEN PILLAY
+//  pillaykeenen1112@gmail.com
 package numberrangesummarizer;
 import java.util.*;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Test; // imported unit testing framework
 
 import java.util.Collection;
 
@@ -11,55 +13,55 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class NumberRangeSummarizerImplTest {
 
     private NumberRangeSummarizer summarizer = new NumberRangeSummarizerImpl();
-
+    // Test to check the basic collection method
     @Test
     void testCollectBasic() {
         Collection<Integer> result = summarizer.collect("1,3,6,7,8");
         assertEquals(5, result.size());
         assertTrue(result.containsAll(Arrays.asList(1, 3, 6, 7, 8)));
     }
-
+    // unit test to see if the whitespaces are handled correctly
     @Test
     void testCollectWithWhitespace() {
         Collection<Integer> result = summarizer.collect("1, 3, 6, 7, 8");
         assertEquals(5, result.size());
         assertTrue(result.containsAll(Arrays.asList(1, 3, 6, 7, 8)));
     }
-
+    // unit to see if invalid characters are handles correctly
     @Test
     void testCollectWithInvalidChars() {
         Collection<Integer> result = summarizer.collect("1,a,3,b,5,!");
         assertEquals(3, result.size());
         assertTrue(result.containsAll(Arrays.asList(1, 3, 5)));
     }
-
+    // unit test to see if null value is handled correclty
     @Test
     void testCollectNull() {
         Collection<Integer> result = summarizer.collect(null);
         assertTrue(result.isEmpty());
     }
-
+    // unit test to see if number summarizer works against sample input
     @Test
     void testSummarizeWithExactSample() {
         Collection<Integer> input = Arrays.asList(1, 3, 6, 7, 8, 12, 13, 14, 15, 21, 22, 23, 24, 31);
         String expected = "1, 3, 6-8, 12-15, 21-24, 31";
         assertEquals(expected, summarizer.summarizeCollection(input));
     }
-
+    // unit testing to see if sequential/consecutive numbers are handled correctly
     @Test
     void testSummarizeTwoSequentialNumbers() {
         Collection<Integer> input = Arrays.asList(1, 2, 4, 5, 7, 8, 9);
         String expected = "1, 2, 4, 5, 7-9";
         assertEquals(expected, summarizer.summarizeCollection(input));
     }
-
+    // unit testing to see if unsorted lists or duplicates are handled correctly
     @Test
     void testSummarizeUnsortedAndDuplicates() {
         Collection<Integer> input = Arrays.asList(5, 1, 3, 2, 4, 8, 10, 9, 8, 3);
         String expected = "1-5, 8-10";
         assertEquals(expected, summarizer.summarizeCollection(input));
     }
-
+// unit test to see if the overall process passes ,tested on sample input
     @Test
     void testFullProcessWithSample() {
         // The sample input string in the email was "1,3,6,7,8,12,13,14,15,21,22,23,24,31"

@@ -1,3 +1,5 @@
+//  KEENEN PILLAY
+//  pillaykeenen1112@gmail.com
 package numberrangesummarizer;
 import java.util.*;
 import java.util.stream.Collectors; // using 'stream' which is function in Java 8
